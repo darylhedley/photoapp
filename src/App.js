@@ -13,6 +13,8 @@ data: Data means that when we write data, we are referencing the Data file we li
 
 var App = createReactClass({
 
+/*<img src={alsatian} /> test to import alsatian image */
+
   getInitialState: function() {
     return {
       selectedView: 'all',
@@ -74,7 +76,7 @@ if the navbar status is set to 'all' OR it matches the status of each image.
           <li>
             <div>{item.title}</div>
             <img src={item.src} />
-            <img src={alsatian} />
+
             <div>{item.description}</div>
             <button onClick={() => this.onItemStatusClicked(item, 'saved')}>Yes</button>
             <button onClick={() => this.onItemStatusClicked(item, 'rejected')}>No</button>
