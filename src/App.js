@@ -3,18 +3,17 @@ import './App.css'; //links to css file
 import createReactClass from 'create-react-class';
 import Data from './Data'; //links data file to app
 import _ from 'lodash';// allows the app to use lodash commands
-//import alsatian from 'src/images/alsatian.jpg' //attempting to import a single image -
 
-/*this function sets the initial state of the app i.e. it opens as if the 'all' tab has been clicked.
-data: Data means that when we write data, we are referencing the Data file we linked in above
-*/
 
 //this is the opening tag of the app - all of the app is stored within this
 
 var App = createReactClass({
 
-/*<img src={alsatian} /> test to import alsatian image */
-
+/*
+this function sets the initial state of the app i.e. it opens as if the 'all'
+tab has been clicked. data: Data means that when we write data, we are referencing
+the Data file we linked in above
+*/
   getInitialState: function() {
     return {
       selectedView: 'all',
@@ -22,9 +21,12 @@ var App = createReactClass({
     }
   },
 
-  /*this function is how the pictures shown are filtered. When we click on any of the tabs,
-  the status of the tabs in the navbar change so that either 'all', 'rejected' or 'saved' are 'selected'.
-  The onNavChange function at the bottom then sets the state making this the 'selectedView' (not sure on this bit)  */
+  /*
+  this function is how the pictures shown are filtered. When we click on any
+  of the tabs, the status of the tabs in the navbar change so that either 'all',
+  'rejected' or 'saved' are 'selected'. The onNavChange function at the bottom
+  then sets the state making this the 'selectedView' (not sure on this bit)
+  */
   getNavItemClassName: function(status) {
     console.log(status, this.state.selectedView);
     if (status === this.state.selectedView) return 'selected';
@@ -49,7 +51,8 @@ var App = createReactClass({
     });
   },
 
-/* this is how we interpolate over the top of the data file and change the staus to either 'saved' or 'rejected'.*/
+/* this is how we interpolate over the top of the data file and change the staus
+to either 'saved' or 'rejected'.*/
   onItemStatusClicked: function(item, status) {
 
     item.status = status;
@@ -76,7 +79,6 @@ if the navbar status is set to 'all' OR it matches the status of each image.
           <li>
             <div>{item.title}</div>
             <img src={item.src} />
-
             <div>{item.description}</div>
             <button onClick={() => this.onItemStatusClicked(item, 'saved')}>Yes</button>
             <button onClick={() => this.onItemStatusClicked(item, 'rejected')}>No</button>
@@ -111,8 +113,10 @@ if the navbar status is set to 'all' OR it matches the status of each image.
 export default App;
 
 /*
+Gaps in understanding this app.
 1 - I don't understand how 'selectedView' is working.
 2 - 'this' still confuses me. I understood it to be pointing to the closest function
 above it in the code but when applying this I am struggeling to work out how this works.
-3 -
+3 - Not sure how the 'render' function works. I know this allows the css to be switched between the
+on the navbar but I can't run through this code.
 */

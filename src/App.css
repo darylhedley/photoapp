@@ -5,6 +5,13 @@
 #474744 - grey
 */
 
+/*
+@font-face {
+font-family: Cicle;
+src: url(src/fonts/Cicle/Cicle_Shadow.ttf);
+}
+*/
+
 body {
   background-color: #FBFBFB;
 }
@@ -17,6 +24,7 @@ body {
 }
 
 .nav li {
+  font-family: Cicle, sans-serif;
   list-style-type: none;
   color: #FBFBFB;
   margin: 0px;
