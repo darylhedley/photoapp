@@ -1,18 +1,19 @@
 var Data = [{
-  "src": "images/one.jpg",
-  "title": "First pic",
+  "src": "src/images/alsatian.jpg",
+  "title": "Alsatian",
   "description": "Description of first image",
   "status": "saved"
 }, {
-  "src": "images/two.jpg",
-  "title": "Second pic",
+  "src": "src/images/greyhound.jpg",
+  "title": "Greyhound",
   "description": "Description of second image",
   "status": "rejected"
 }, {
-  "src": "images/three.jpg",
-  "title": "Third pic",
+  "src": "src/images/wolf.jpg",
+  "title": "Wolf",
   "description": "Description of third image",
   "status": "saved"
 }];
+
 
 export default Data;
