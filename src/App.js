@@ -4,7 +4,7 @@ import createReactClass from 'create-react-class';
 import Data from './Data'; //links data file to app
 import _ from 'lodash';// allows the app to use lodash commands
 import whatdoglogo from './images/WhatDog logo.png';
-
+import Nav from './components/nav';
 
 
 //this is the opening tag of the app - all of the app is stored within this
@@ -78,44 +78,36 @@ if the navbar status is set to 'all' OR it matches the status of each image.
 
       if (selectedView === 'all' || selectedView === item.status) {
         return (
-                <li>
-                  <img src={item.src} />
-                  <h3>{item.title}</h3>
-                  <div>{item.description}</div>
-                  <button type="button" className="btn" onClick={() => this.onItemStatusClicked(item, 'saved')}>Save</button>
-                  <button type="button" className="btn" onClick={() => this.onItemStatusClicked(item, 'rejected')}>Reject</button>
-                  <h4>{item.status}</h4>
-                </li>
-              )
-            }
-          });
-        },
+          <li>
+            <img src={item.src} />
+            <h3>{item.title}</h3>
+            <div>{item.description}</div>
+            <button type="button" className="btn" onClick={() => this.onItemStatusClicked(item, 'saved')}>Save</button>
+            <button type="button" className="btn" onClick={() => this.onItemStatusClicked(item, 'rejected')}>Reject</button>
+            <h4>{item.status}</h4>
+          </li>
+        )
+      }
+    });
+  },
 
-      var React = require('react');
+  render : function() {
+    console.log('render')
+    return (
+      <div className="app">
+        <Nav 
+          getNavItemClassName={this.getNavItemClassName} 
+          onAllClicked={this.onAllClicked} 
+          onSavedClicked={this.onSavedClicked}
+          onRejectedClicked={this.onRejectedClicked}
+        />
+        <div className="content">
+          {this.renderPhotos()}
+        </div>
+      </div>
+    );
+  }
 
-      var Navigation = React.createClass({
-
-        render : function() {
-          console.log('render')
-          return (
-            <div className="app">
-              <nav className="nav">
-                <ul>
-                  <li className={this.getNavItemClassName('all')} onClick={this.onAllClicked}>All</li>
-                  <li className={this.getNavItemClassName('saved')} onClick={this.onSavedClicked}>Saved</li>
-                  <li className={this.getNavItemClassName('rejected')} onClick={this.onRejectedClicked}>Rejected</li>
-                </ul>
-              </nav>
-              <div className="content">
-                {this.renderPhotos()}
-              </div>
-
-            </div>
-          );
-        }
-      });
-
-module.exports = Navigation;
 })
 
 export default App;
