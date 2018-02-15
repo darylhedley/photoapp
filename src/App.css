@@ -1,32 +1,44 @@
 /*
-#FFB400 - yellow
-#FBFBFB - White
-#2994B2 - teal
-#474744 - grey
+#F4F7ED - white
+#2E6E65 - Dark Green
+#86EE60 - lime green
+#2B3752 - midnight blue
 */
 
-/*
+
 @font-face {
 font-family: Cicle;
-src: url(src/fonts/Cicle/Cicle_Shadow.ttf);
-}
-*/
-
-body {
-  background-color: #FBFBFB;
+src: url(./fonts/Cicle/Cicle_Shadow.ttf);
 }
 
+.content {
+  background-color: #2E6E65;
+}
+
+h2 {
+  padding-top:100px;
+  color: #F4F7ED;
+  font-size: 2em;
+}
 
 .nav {
-  background-color: #2994B2;
+  background-color: #F4F7ED;
   padding: 15px;
   text-align: center;
 }
 
+li {
+    list-style-type: none;
+    padding: 30px;
+    align-content: center;
+    color: #F4F7ED;
+
+}
+
 .nav li {
   font-family: Cicle, sans-serif;
-  list-style-type: none;
-  color: #FBFBFB;
+  font-size: 2.5em;
+  color: #2E6E65;
   margin: 0px;
   padding: 30px;
   display: inline;
@@ -34,6 +46,9 @@ body {
 }
 
 li.selected {
-  text-decoration: underline;
-  color: #FFB400;
+  color: #86EE60;
+}
+
+img {
+  border:
 }

@@ -3,6 +3,8 @@ import './App.css'; //links to css file
 import createReactClass from 'create-react-class';
 import Data from './Data'; //links data file to app
 import _ from 'lodash';// allows the app to use lodash commands
+import whatdoglogo from './images/WhatDog logo.png';
+
 
 
 //this is the opening tag of the app - all of the app is stored within this
@@ -76,14 +78,26 @@ if the navbar status is set to 'all' OR it matches the status of each image.
 
       if (selectedView === 'all' || selectedView === item.status) {
         return (
-          <li>
-            <div>{item.title}</div>
-            <img src={item.src} />
-            <div>{item.description}</div>
-            <button onClick={() => this.onItemStatusClicked(item, 'saved')}>Yes</button>
-            <button onClick={() => this.onItemStatusClicked(item, 'rejected')}>No</button>
-            <div>{item.status}</div>
-          </li>
+          <div className = 'container'>
+            <div className = 'row'>
+              <div className = 'col-sm-12'>
+                <li>
+                  <img src={item.src} />
+                  <h3>{item.title}</h3>
+                  <div>{item.description}</div>
+                  <div className="btn-group btn-group-justified">
+                    <div className="btn-group">
+                      <button type="button" className="btn" onClick={() => this.onItemStatusClicked(item, 'saved')}>Save</button>
+                    </div>
+                    <div className="btn-group">
+                      <button type="button" className="btn" onClick={() => this.onItemStatusClicked(item, 'rejected')}>Reject</button>
+                    </div>
+                  </div>
+                  <h4>{item.status}</h4>
+                </li>
+              </div>
+            </div>
+          </div>
         )
       }
     });
@@ -119,4 +133,5 @@ Gaps in understanding this app.
 above it in the code but when applying this I am struggeling to work out how this works.
 3 - Not sure how the 'render' function works. I know this allows the css to be switched between the
 on the navbar but I can't run through this code.
+4 - colors of code editor text
 */
