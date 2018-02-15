@@ -78,50 +78,44 @@ if the navbar status is set to 'all' OR it matches the status of each image.
 
       if (selectedView === 'all' || selectedView === item.status) {
         return (
-          <div className = 'container'>
-            <div className = 'row'>
-              <div className = 'col-sm-12'>
                 <li>
                   <img src={item.src} />
                   <h3>{item.title}</h3>
                   <div>{item.description}</div>
-                  <div className="btn-group btn-group-justified">
-                    <div className="btn-group">
-                      <button type="button" className="btn" onClick={() => this.onItemStatusClicked(item, 'saved')}>Save</button>
-                    </div>
-                    <div className="btn-group">
-                      <button type="button" className="btn" onClick={() => this.onItemStatusClicked(item, 'rejected')}>Reject</button>
-                    </div>
-                  </div>
+                  <button type="button" className="btn" onClick={() => this.onItemStatusClicked(item, 'saved')}>Save</button>
+                  <button type="button" className="btn" onClick={() => this.onItemStatusClicked(item, 'rejected')}>Reject</button>
                   <h4>{item.status}</h4>
                 </li>
+              )
+            }
+          });
+        },
+
+      var React = require('react');
+
+      var Navigation = React.createClass({
+
+        render : function() {
+          console.log('render')
+          return (
+            <div className="app">
+              <nav className="nav">
+                <ul>
+                  <li className={this.getNavItemClassName('all')} onClick={this.onAllClicked}>All</li>
+                  <li className={this.getNavItemClassName('saved')} onClick={this.onSavedClicked}>Saved</li>
+                  <li className={this.getNavItemClassName('rejected')} onClick={this.onRejectedClicked}>Rejected</li>
+                </ul>
+              </nav>
+              <div className="content">
+                {this.renderPhotos()}
               </div>
+
             </div>
-          </div>
-        )
-      }
-    });
+          );
+        }
+      });
 
-  },
-
-  render : function() {
-    console.log('render')
-    return (
-      <div className="app">
-        <nav className="nav">
-          <ul>
-            <li className={this.getNavItemClassName('all')} onClick={this.onAllClicked}>All</li>
-            <li className={this.getNavItemClassName('saved')} onClick={this.onSavedClicked}>Saved</li>
-            <li className={this.getNavItemClassName('rejected')} onClick={this.onRejectedClicked}>Rejected</li>
-          </ul>
-        </nav>
-        <div className="content">
-          {this.renderPhotos()}
-        </div>
-
-      </div>
-    );
-  }
+module.exports = Navigation;
 })
 
 export default App;
