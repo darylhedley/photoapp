@@ -5,6 +5,7 @@ import Data from './Data'; //links data file to app
 import _ from 'lodash';// allows the app to use lodash commands
 import whatdoglogo from './images/WhatDog logo.png';
 import Nav from './components/nav';
+import Photo from './components/photo';
 
 
 //this is the opening tag of the app - all of the app is stored within this
@@ -17,10 +18,10 @@ tab has been clicked. data: Data means that when we write data, we are referenci
 the Data file we linked in above
 */
   getInitialState: function() {
-    return {
-      selectedView: 'all',
-      data: Data,
-    }
+      return {
+          selectedView: 'all',
+          data: Data,
+      }
   },
 
   /*
@@ -30,38 +31,38 @@ the Data file we linked in above
   then sets the state making this the 'selectedView' (not sure on this bit)
   */
   getNavItemClassName: function(status) {
-    console.log(status, this.state.selectedView);
-    if (status === this.state.selectedView) return 'selected';
-    return '';
+      console.log(status, this.state.selectedView);
+      if (status === this.state.selectedView) return 'selected';
+      return '';
   },
 
   onAllClicked: function() {
-    this.onNavChange('all');
+      this.onNavChange('all');
   },
 
   onSavedClicked: function() {
-    this.onNavChange('saved');
+      this.onNavChange('saved');
   },
 
   onRejectedClicked: function() {
-    this.onNavChange('rejected');
+      this.onNavChange('rejected');
   },
 
   onNavChange: function(view){
-    this.setState({
-      selectedView: view
-    });
+      this.setState({
+        selectedView: view
+      });
   },
 
 /* this is how we interpolate over the top of the data file and change the staus
 to either 'saved' or 'rejected'.*/
   onItemStatusClicked: function(item, status) {
 
-    item.status = status;
+      item.status = status;
 
-    this.setState({
-      data: this.state.data
-    });
+      this.setState({
+          data: this.state.data
+      });
 
   },
 /*
@@ -71,41 +72,39 @@ It is looking at our images in the data file and showing the content (everything
 if the navbar status is set to 'all' OR it matches the status of each image.
  */
   renderPhotos: function() {
-    //console.log('renderPhotos:items', Data);
-    return _.map(this.state.data, (item) => {
+      //console.log('renderPhotos:items', Data);
+      return _.map(this.state.data, (item) => {
 
-      var selectedView = this.state.selectedView;
+          var selectedView = this.state.selectedView;
 
-      if (selectedView === 'all' || selectedView === item.status) {
-        return (
-          <li>
-            <img src={item.src} />
-            <h3>{item.title}</h3>
-            <div>{item.description}</div>
-            <button type="button" className="btn" onClick={() => this.onItemStatusClicked(item, 'saved')}>Save</button>
-            <button type="button" className="btn" onClick={() => this.onItemStatusClicked(item, 'rejected')}>Reject</button>
-            <h4>{item.status}</h4>
-          </li>
-        )
-      }
-    });
-  },
+              if (selectedView === 'all' || selectedView === item.status) {
+                  return (
+                      <div className="photo">
+                          <Photo
+                              item={this.item}
+                              onItemStatusClicked={this.onItemStatusClicked}
+                          />
+                      </div>
+                    )
+                }
+          });
+      },
 
   render : function() {
-    console.log('render')
-    return (
-      <div className="app">
-        <Nav 
-          getNavItemClassName={this.getNavItemClassName} 
-          onAllClicked={this.onAllClicked} 
-          onSavedClicked={this.onSavedClicked}
-          onRejectedClicked={this.onRejectedClicked}
-        />
-        <div className="content">
-          {this.renderPhotos()}
-        </div>
-      </div>
-    );
+      console.log('render')
+      return (
+          <div className="app">
+              <Nav
+                  getNavItemClassName={this.getNavItemClassName}
+                  onAllClicked={this.onAllClicked}
+                  onSavedClicked={this.onSavedClicked}
+                  onRejectedClicked={this.onRejectedClicked}
+              />
+              <div className="content">
+                {this.renderPhotos()}
+              </div>
+          </div>
+      );
   }
 
 })
@@ -120,4 +119,6 @@ above it in the code but when applying this I am struggeling to work out how thi
 3 - Not sure how the 'render' function works. I know this allows the css to be switched between the
 on the navbar but I can't run through this code.
 4 - colors of code editor text
+5 - arrow functions
+6 - Where is Item defined?
 */
