@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import createReactClass from 'create-react-class';
 import Data from '../Data.js';
 
+
 var Photo = createReactClass({
 
     render: function() {

@@ -120,5 +120,5 @@ above it in the code but when applying this I am struggeling to work out how thi
 on the navbar but I can't run through this code.
 4 - colors of code editor text
 5 - arrow functions
-6 - Where is Item defined?
+6 - Where is item defined?
 */
