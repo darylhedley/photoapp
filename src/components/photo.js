@@ -8,16 +8,14 @@ var Photo = createReactClass({
     render: function() {
 
         return (
-            <photo className="photo">
-                <li>
-                    <img src={this.props.item.src} />
-                    <h3>{this.props.item.title}</h3>
-                    <div>{this.props.item.description}</div>
-                    <button onClick={() => this.props.onItemStatusClicked(this.props.item, 'saved')}>Save</button>
-                    <button onClick={() => this.props.onItemStatusClicked(this.props.item, 'rejected')}>Reject</button>
-                    <h4>{this.props.item.status}</h4>
-                </li>
-            </photo>
+            <li className="photo">
+                <img src={this.props.item.src} />
+                <h3>{this.props.item.title}</h3>
+                <div>{this.props.item.description}</div>
+                <button onClick={() => this.props.onItemStatusClicked(this.props.item, 'saved')}>Save</button>
+                <button onClick={() => this.props.onItemStatusClicked(this.props.item, 'rejected')}>Reject</button>
+                <h4>{this.props.item.status}</h4>
+            </li>
         );
     }
 });
