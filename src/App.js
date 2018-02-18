@@ -74,7 +74,6 @@ if the navbar status is set to 'all' OR it matches the status of each image.
   renderPhotos: function() {
       //console.log('renderPhotos:items', Data);
       return _.map(this.state.data, (item) => {
-          // LAWRIE!!! item is an argument so is not this.item
 
           var selectedView = this.state.selectedView;
 
@@ -82,7 +81,7 @@ if the navbar status is set to 'all' OR it matches the status of each image.
                   return (
                       <div className="photo">
                           <Photo
-                              item={item}
+                              item={this.item}
                               onItemStatusClicked={this.onItemStatusClicked}
                           />
                       </div>
