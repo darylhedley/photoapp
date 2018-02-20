@@ -3,15 +3,13 @@ import createReactClass from 'create-react-class';
 import Data from '../Data.js';
 import '../App.css'
 
-var RateButton = createReactClass ({
+var Rate = createReactClass ({
 
     render: function() {
 
         return (
 
-            <button className = "dropDown">
-                
-            </button>
+            //CHANGE TO THIS BRANCH
       )
   }
 
@@ -19,4 +17,4 @@ var RateButton = createReactClass ({
 
 
 
-export default RateButton;
+export default Rate;

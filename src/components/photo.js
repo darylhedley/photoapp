@@ -18,14 +18,12 @@ var Photo = createReactClass({
                         <div className = "btn-group">
                             <button className = "btn btn-group" onClick={() => this.props.onItemStatusClicked(this.props.item, 'saved')}>Save</button>
                             <button className = "btn btn-group" onClick={() => this.props.onItemStatusClicked(this.props.item, 'rejected')}>Reject</button>
-                            <button className = "btn btn-group" >Rate</button>
                         </div>
                     <div>
                         <h4>{this.props.item.status}</h4>
-                        <h4>{this.props.item.rating}</h4>
                     </div>
                 </li>
-            
+
         );
     }
 });
