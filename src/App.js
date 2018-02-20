@@ -3,10 +3,8 @@ import './App.css'; //links to css file
 import createReactClass from 'create-react-class';
 import Data from './Data'; //links data file to app
 import _ from 'lodash';// allows the app to use lodash commands
-import whatdoglogo from './images/WhatDog logo.png';
 import Nav from './components/nav';
 import Photo from './components/photo';
-
 
 //this is the opening tag of the app - all of the app is stored within this
 
@@ -81,7 +79,7 @@ if the navbar status is set to 'all' OR it matches the status of each image.
                   return (
                       <div className="photo">
                           <Photo
-                              item={this.item}
+                              item={item}
                               onItemStatusClicked={this.onItemStatusClicked}
                           />
                       </div>
@@ -118,7 +116,15 @@ Gaps in understanding this app.
 above it in the code but when applying this I am struggeling to work out how this works.
 3 - Not sure how the 'render' function works. I know this allows the css to be switched between the
 on the navbar but I can't run through this code.
-4 - colors of code editor text
-5 - arrow functions
-6 - Where is item defined?
+4 - arrow functions
+5 - css linking through to components/ css heirachy
+6 - style using state - green for Saved/Red for Rejected
+
+TO ADD
+- center button text
+- center nav text
+- hover styling on buttons
+- green/red styling depending on status
+- hide/show description when hover over image
+
 */

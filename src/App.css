@@ -7,48 +7,83 @@
 
 
 @font-face {
-font-family: Cicle;
-src: url(./fonts/Cicle/Cicle_Shadow.ttf);
+font-family: AnuDaw;
+src: url(./fonts/AnuDaw/ANUDRG__.ttf);
+}
+
+@font-face {
+font-family: newCicle;
+src: url(./fonts/New-Cicle/New_Cicle_Gordita.ttf);
 }
 
 .content {
   background-color: #2E6E65;
 }
 
-h2 {
-  padding-top:100px;
-  color: #F4F7ED;
-  font-size: 2em;
-}
+/*NAV COMPONENT STYLING*/
 
-.nav {
+.nav ul {
   background-color: #F4F7ED;
-  padding: 15px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
   text-align: center;
-}
-
-li {
-    list-style-type: none;
-    padding: 30px;
-    align-content: center;
-    color: #F4F7ED;
-
+  list-style: none;
 }
 
 .nav li {
-  font-family: Cicle, sans-serif;
-  font-size: 2.5em;
+  font-family: AnuDaw, sans-serif;
+  font-size: 2em;
   color: #2E6E65;
   margin: 0px;
   padding: 30px;
-  display: inline;
-
+  display: inline-block;
 }
 
 li.selected {
   color: #86EE60;
 }
 
-img {
-  border:
+/*PHOTO COMPONENT STYLING*/
+
+.photo h3 {
+  font-family: newCicle, sans-serif;
+  color: #F4F7ED;
+  margin-top: 15px;
+}
+
+.photo h4 {
+    font-family: newCicle, sans-serif;
+    color: #86EE60;
+    border: 2px solid #86EE60;
+    padding: 3px;
+    text-align: center;
+    text-transform: uppercase;
+    width: 50%;
+    margin: auto;
+}
+
+.photo p {
+    font-family: newCicle, sans-serif;
+}
+
+.photo li {
+    list-style-type: none;
+    padding: 30px;
+    margin: auto;
+    width: 50%;
+    color: #F4F7ED;
+}
+
+.photo img {
+  border: 2px solid #F4F7ED;
+  width: 100%;
+}
+
+.btn-group {
+    width:100%;
+    font-family: newCicle, sans-serif;
+    text-align: center;
+    margin-bottom: 5px;
+    color: #2B3752;
 }
