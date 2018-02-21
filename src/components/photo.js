@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import createReactClass from 'create-react-class';
 import Data from '../Data.js';
 import '../App.css'
+import Rater from 'react-rater'
+import 'react-rater/lib/react-rater.css'
 
 
 
@@ -14,6 +16,10 @@ var Photo = createReactClass({
                 <li className="photo">
                     <img src={this.props.item.src} />
                     <h3>{this.props.item.title}</h3>
+                        <div className = "rater">
+                            <h5>Rate this hound!</h5>
+                        </div>
+                        <Rater/>
                     <p>{this.props.item.description}</p>
                         <div className = "btn-group">
                             <button className = "btn btn-group" onClick={() => this.props.onItemStatusClicked(this.props.item, 'saved')}>Save</button>

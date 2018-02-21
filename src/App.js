@@ -6,6 +6,8 @@ import _ from 'lodash';// allows the app to use lodash commands
 import Nav from './components/nav';
 import Photo from './components/photo';
 
+
+
 //this is the opening tag of the app - all of the app is stored within this
 
 var App = createReactClass({
@@ -87,6 +89,7 @@ if the navbar status is set to 'all' OR it matches the status of each image.
                 }
           });
       },
+
 
   render : function() {
       console.log('render')

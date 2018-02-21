@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import createReactClass from 'create-react-class';
 
 var Nav = createReactClass({
-    
+
     render: function() {
-        
+
         return (
             <nav className="nav">
                 <ul>
