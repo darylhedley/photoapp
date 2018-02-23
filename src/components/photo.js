@@ -3,32 +3,43 @@ import createReactClass from 'create-react-class';
 import Data from '../Data.js';
 import '../App.css'
 import Rater from 'react-rater'
-import 'react-rater/lib/react-rater.css'
+
 
 
 
 var Photo = createReactClass({
 
-    render: function() {
+    onRaterChanged: function(event){
+        var rating = event.rating;
+        if (event.type === 'click') {
+            this.props.onItemRatingClicked(this.props.item, rating)
+        }
+    },
 
+    render: function() {
+        console.log(this.props.item);
         return (
 
-                <li className="photo">
-                    <img src={this.props.item.src} />
-                    <h3>{this.props.item.title}</h3>
-                        <div className = "rater">
-                            <h5>Rate this hound!</h5>
-                        </div>
-                        <Rater/>
-                    <p>{this.props.item.description}</p>
-                        <div className = "btn-group">
-                            <button className = "btn btn-group" onClick={() => this.props.onItemStatusClicked(this.props.item, 'saved')}>Save</button>
-                            <button className = "btn btn-group" onClick={() => this.props.onItemStatusClicked(this.props.item, 'rejected')}>Reject</button>
-                        </div>
-                    <div>
-                        <h4>{this.props.item.status}</h4>
+            <li className="photo">
+                <img src={this.props.item.src} />
+                <h3>{this.props.item.title}</h3>
+                    <div className = "rater">
+                        <h5>Rate this hound!</h5>
                     </div>
-                </li>
+                    <Rater 
+                        rating={this.props.item.rating}
+                        onRate={this.onRaterChanged}
+                    />
+                <p>{this.props.item.description}</p>
+                    <div className = "btn-group">
+                        <button className = "btn btn-group" onClick={() => this.props.onItemStatusClicked(this.props.item, 'saved')}>Save</button>
+                        <button className = "btn btn-group" onClick={() => this.props.onItemStatusClicked(this.props.item, 'rejected')}>Reject</button>
+                        <button className = "btn btn-group" onClick={() => this.props.onItemDeleteClicked(this.props.item)}>Delete</button>
+                    </div>
+                <div>
+                    <h4>{this.props.item.status}</h4>
+                </div>
+            </li>
 
         );
     }

@@ -5,6 +5,7 @@ import Data from './Data'; //links data file to app
 import _ from 'lodash';// allows the app to use lodash commands
 import Nav from './components/nav';
 import Photo from './components/photo';
+import 'react-rater/lib/react-rater.css';
 
 
 
@@ -17,96 +18,143 @@ this function sets the initial state of the app i.e. it opens as if the 'all'
 tab has been clicked. data: Data means that when we write data, we are referencing
 the Data file we linked in above
 */
-  getInitialState: function() {
-      return {
-          selectedView: 'all',
-          data: Data,
-      }
-  },
+    getInitialState: function() {
+        return {
+            selectedSort: "",
+            selectedView: 'all',
+            data: Data
+        }
+    },
 
-  /*
-  this function is how the pictures shown are filtered. When we click on any
-  of the tabs, the status of the tabs in the navbar change so that either 'all',
-  'rejected' or 'saved' are 'selected'. The onNavChange function at the bottom
-  then sets the state making this the 'selectedView' (not sure on this bit)
-  */
-  getNavItemClassName: function(status) {
-      console.log(status, this.state.selectedView);
-      if (status === this.state.selectedView) return 'selected';
-      return '';
-  },
+    /*
+    this function is how the pictures shown are filtered. When we click on any
+    of the tabs, the status of the tabs in the navbar change so that either 'all',
+    'rejected' or 'saved' are 'selected'. The onNavChange function at the bottom
+    then sets the state making this the 'selectedView' (not sure on this bit)
+    */
+    getNavItemClassName: function(status) {
+        console.log(status, this.state.selectedView);
+        if (status === this.state.selectedView) return 'selected';
+        return '';
+    },
 
-  onAllClicked: function() {
-      this.onNavChange('all');
-  },
+    onAllClicked: function() {
+        this.onNavChange('all');
+    },
 
-  onSavedClicked: function() {
-      this.onNavChange('saved');
-  },
+    onSavedClicked: function() {
+        this.onNavChange('saved');
+    },
 
-  onRejectedClicked: function() {
-      this.onNavChange('rejected');
-  },
+    onRejectedClicked: function() {
+        this.onNavChange('rejected');
+    },
 
-  onNavChange: function(view){
-      this.setState({
-        selectedView: view
-      });
-  },
+    onNavChange: function(view){
+        this.setState({
+            selectedView: view
+        });
+    },
 
-/* this is how we interpolate over the top of the data file and change the staus
-to either 'saved' or 'rejected'.*/
-  onItemStatusClicked: function(item, status) {
+    /* this is how we interpolate over the top of the data file and change the staus
+    to either 'saved' or 'rejected'.*/
+    onItemStatusClicked: function(item, status) {
 
-      item.status = status;
+        item.status = status;
 
-      this.setState({
-          data: this.state.data
-      });
+        this.setState({
+            data: this.state.data
+        });
 
-  },
-/*
-_.map creates a new array from an exisiting array by passing it through some
-additional parameters. In this instance we are using it to filter our images shown.
-It is looking at our images in the data file and showing the content (everything within the <li>
-if the navbar status is set to 'all' OR it matches the status of each image.
- */
-  renderPhotos: function() {
-      //console.log('renderPhotos:items', Data);
-      return _.map(this.state.data, (item) => {
+    },
 
-          var selectedView = this.state.selectedView;
+    onItemRatingClicked: function(item, rating) {
 
-              if (selectedView === 'all' || selectedView === item.status) {
-                  return (
-                      <div className="photo">
-                          <Photo
-                              item={item}
-                              onItemStatusClicked={this.onItemStatusClicked}
-                          />
-                      </div>
-                    )
+        item.rating = rating;
+
+        this.setState({
+            data: this.state.data
+        });
+
+    },
+
+    onItemDeleteClicked: function(item){
+        _.remove(this.state.data, item);
+        
+        this.setState({
+            data: this.state.data
+        })
+    },
+
+    onSortChanged: function(event) {
+        this.setState({
+            selectedSort: event.target.value
+        })
+    },
+
+    /*
+    _.map creates a new array from an exisiting array by passing it through some
+    additional parameters. In this instance we are using it to filter our images shown.
+    It is looking at our images in the data file and showing the content (everything within the <li>
+    if the navbar status is set to 'all' OR it matches the status of each image.
+    */
+    renderPhotos: function() {
+        //console.log('renderPhotos:items', Data);
+        if (this.state.selectedSort != '') {
+            var sortedData = _.orderBy(this.state.data, ['rating'], [this.state.selectedSort]);
+        } else {
+            var sortedData = this.state.data;
+        }
+        
+        return _.map(sortedData, (item) => {
+
+            var selectedView = this.state.selectedView;
+
+                if (selectedView === 'all' || selectedView === item.status) {
+                    return (
+                        <Photo
+                            key={item.title}
+                            item={item}
+                            onItemStatusClicked={this.onItemStatusClicked}
+                            onItemRatingClicked={this.onItemRatingClicked}
+                            onItemDeleteClicked={this.onItemDeleteClicked}
+                        />
+                    );
                 }
-          });
-      },
+            });
+        },
 
 
-  render : function() {
-      console.log('render')
-      return (
-          <div className="app">
-              <Nav
-                  getNavItemClassName={this.getNavItemClassName}
-                  onAllClicked={this.onAllClicked}
-                  onSavedClicked={this.onSavedClicked}
-                  onRejectedClicked={this.onRejectedClicked}
-              />
-              <div className="content">
-                {this.renderPhotos()}
-              </div>
-          </div>
-      );
-  }
+    render : function() {
+        console.log('render', this.state.selectedSort);
+
+        return (
+            <div className="app">
+                <Nav
+                    getNavItemClassName={this.getNavItemClassName}
+                    onAllClicked={this.onAllClicked}
+                    onSavedClicked={this.onSavedClicked}
+                    onRejectedClicked={this.onRejectedClicked}
+                />
+                <div className="action-bar">
+                    <select onChange={this.onSortChanged} value={this.state.selectedSort}>
+                        <option value="">
+                            None
+                        </option>
+                        <option value="desc">
+                            Highest Rating
+                        </option>
+                        <option value="asc">
+                            Lowest Rating
+                        </option>
+                    </select>
+                </div>
+                <div className="content">
+                    {this.renderPhotos()}
+                </div>
+            </div>
+        );
+    }
 
 })
 
@@ -121,13 +169,14 @@ above it in the code but when applying this I am struggeling to work out how thi
 on the navbar but I can't run through this code.
 4 - arrow functions
 5 - css linking through to components/ css heirachy
-6 - style using state - green for Saved/Red for Rejected
+
 
 TO ADD
 - center button text
 - center nav text
 - hover styling on buttons
-- green/red styling depending on status
+- green/red styling depending on status - style using state? - green for Saved/Red for Rejected
 - hide/show description when hover over image
+- Rating isn't saved
 
 */

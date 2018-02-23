@@ -38,6 +38,7 @@ src: url(./fonts/New-Cicle/New_Cicle_Gordita.ttf);
   margin: 0px;
   padding: 30px;
   display: inline-block;
+  cursor: pointer;
 }
 
 li.selected {
@@ -73,7 +74,7 @@ li.selected {
     font-family: newCicle, sans-serif;
 }
 
-.photo li {
+.photo {
     list-style-type: none;
     padding: 30px;
     margin: auto;
