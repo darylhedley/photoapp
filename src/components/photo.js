@@ -6,7 +6,6 @@ import Rater from 'react-rater'
 
 
 
-
 var Photo = createReactClass({
 
     onRaterChanged: function(event){
@@ -17,7 +16,7 @@ var Photo = createReactClass({
     },
 
     render: function() {
-        console.log(this.props.item);
+        //console.log(this.props.item);
         return (
 
             <li className="photo">

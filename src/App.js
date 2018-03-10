@@ -5,6 +5,7 @@ import Data from './Data'; //links data file to app
 import _ from 'lodash';// allows the app to use lodash commands
 import Nav from './components/nav';
 import Photo from './components/photo';
+import AddPhoto from './components/addphoto';
 import 'react-rater/lib/react-rater.css';
 
 
@@ -22,9 +23,11 @@ the Data file we linked in above
         return {
             selectedSort: "",
             selectedView: 'all',
-            data: Data
+            data: Data,
+            mode: ""
         }
     },
+    
 
     /*
     this function is how the pictures shown are filtered. When we click on any
@@ -33,7 +36,7 @@ the Data file we linked in above
     then sets the state making this the 'selectedView' (not sure on this bit)
     */
     getNavItemClassName: function(status) {
-        console.log(status, this.state.selectedView);
+        //console.log(status, this.state.selectedView);
         if (status === this.state.selectedView) return 'selected';
         return '';
     },
@@ -92,6 +95,23 @@ the Data file we linked in above
         })
     },
 
+    onAddPhotoClicked: function() {
+        console.log('Add Photo Clicked')
+        this.onModeChange('AddPhoto');
+    },
+
+    onModeChange: function(mode){
+        console.log('Mode is' + this.state.mode)
+        this.setState({
+            selectedMode: mode
+        });
+    },
+
+    renderAddPhoto: function (mode) {
+        console.log(mode, this.state.selectedMode);
+        if (mode === this.state.mode) return <AddPhoto />;
+    },
+
     /*
     _.map creates a new array from an exisiting array by passing it through some
     additional parameters. In this instance we are using it to filter our images shown.
@@ -125,8 +145,9 @@ the Data file we linked in above
         },
 
 
-    render : function() {
-        console.log('render', this.state.selectedSort);
+
+    render: function() {
+        //console.log('render', this.state.selectedSort);
 
         return (
             <div className="app">
@@ -149,6 +170,7 @@ the Data file we linked in above
                         </option>
                     </select>
                 </div>
+                <button onClick={() => this.onAddPhotoClicked()}>Add a Hound!</button>
                 <div className="content">
                     {this.renderPhotos()}
                 </div>
