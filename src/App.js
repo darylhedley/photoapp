@@ -24,7 +24,7 @@ the Data file we linked in above
             selectedSort: "",
             selectedView: 'all',
             data: Data,
-            mode: ""
+            selectedMode: "DisplayPhotos"
         }
     },
     
@@ -96,20 +96,20 @@ the Data file we linked in above
     },
 
     onAddPhotoClicked: function() {
-        console.log('Add Photo Clicked')
         this.onModeChange('AddPhoto');
     },
 
     onModeChange: function(mode){
-        console.log('Mode is' + this.state.mode)
+        console.log('Mode is', this.state.selectedMode)
         this.setState({
             selectedMode: mode
         });
     },
 
-    renderAddPhoto: function (mode) {
-        console.log(mode, this.state.selectedMode);
-        if (mode === this.state.mode) return <AddPhoto />;
+    renderAddPhoto: function () {
+        console.log(this.state.selectedMode);
+        // If the selectedMode = AddPhoto render the AddPhoto - but why do the Photos hide? Look in the renderPhotos function
+        if (this.state.selectedMode === 'AddPhoto') return <AddPhoto />;
     },
 
     /*
@@ -119,6 +119,10 @@ the Data file we linked in above
     if the navbar status is set to 'all' OR it matches the status of each image.
     */
     renderPhotos: function() {
+        // This little beautiful snippet means if the this.state.selectedMode is 
+        // anything other then "DisplayPhotos" then 
+        // do not render the Photos - which feels like it's hidden
+        if (this.state.selectedMode != "DisplayPhotos") return null;
         //console.log('renderPhotos:items', Data);
         if (this.state.selectedSort != '') {
             var sortedData = _.orderBy(this.state.data, ['rating'], [this.state.selectedSort]);
@@ -173,6 +177,7 @@ the Data file we linked in above
                 <button onClick={() => this.onAddPhotoClicked()}>Add a Hound!</button>
                 <div className="content">
                     {this.renderPhotos()}
+                    {this.renderAddPhoto()}
                 </div>
             </div>
         );
