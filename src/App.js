@@ -89,6 +89,16 @@ the Data file we linked in above
         })
     },
 
+    onItemAddClicked: function(item){
+        console.log('app.onItemAddClicked', item)
+        this.state.data.push(item)
+
+        this.setState({
+            data: this.state.data,
+            selectedMode: "DisplayPhotos"
+        })
+    },
+
     onSortChanged: function(event) {
         this.setState({
             selectedSort: event.target.value
@@ -109,7 +119,13 @@ the Data file we linked in above
     renderAddPhoto: function () {
         console.log(this.state.selectedMode);
         // If the selectedMode = AddPhoto render the AddPhoto - but why do the Photos hide? Look in the renderPhotos function
-        if (this.state.selectedMode === 'AddPhoto') return <AddPhoto />;
+        if (this.state.selectedMode === 'AddPhoto') 
+            return (
+                <AddPhoto 
+                    onItemAddClicked={this.onItemAddClicked}
+                    
+                />
+            );
     },
 
     /*
@@ -151,7 +167,7 @@ the Data file we linked in above
 
 
     render: function() {
-        //console.log('render', this.state.selectedSort);
+        console.log('render', this.state);
 
         return (
             <div className="app">
